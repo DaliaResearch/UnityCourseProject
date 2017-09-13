@@ -37,6 +37,9 @@ public class LevelManager : MonoBehaviour {
 
 	public GameObject gameOverScreen;
 
+	public AudioSource hurtPlayerSound;
+	public AudioSource pickCoinSound;
+
 	// Use this for initialization
 	void Start () {
 		thePlayer = FindObjectOfType<PlayerController> ();
@@ -94,6 +97,7 @@ public class LevelManager : MonoBehaviour {
 	}
 
 	public void AddCoins(int coinsToAdd){
+		pickCoinSound.Play ();
 		coinsCount += coinsToAdd;
 		UpdateCoinsText ();
 
@@ -106,6 +110,8 @@ public class LevelManager : MonoBehaviour {
 
 	public void AddHurt(int hurtToTake){
 		if (!thePlayer.knockedout) {
+			hurtPlayerSound.Play ();
+
 			thePlayer.Knockout ();
 
 			Instantiate (hurtSplosion, thePlayer.transform.position, hurtSplosion.transform.rotation);
@@ -170,11 +176,13 @@ public class LevelManager : MonoBehaviour {
 	}
 
 	public void AddExtraLife(){
+		pickCoinSound.Play ();
 		actualLifes += 1;
 		UpdateLifesText ();
 	}
 
 	public void AddExtraHealth (int healthToGive){
+		pickCoinSound.Play ();
 		actualHealth += healthToGive;
 
 		if (actualHealth > maxHealth) {

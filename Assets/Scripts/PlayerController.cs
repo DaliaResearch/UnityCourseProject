@@ -25,6 +25,8 @@ public class PlayerController : MonoBehaviour {
 	public float knockoutForce;
 	public float knockoutTime;
 
+	public AudioSource jumpSound;
+
 	// Use this for initialization
 	void Start () {
 		myRigibdody = GetComponent<Rigidbody2D> ();	
@@ -48,6 +50,7 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		if (Input.GetButtonDown ("Jump") && isGrounded) {
+			jumpSound.Play ();
 			myRigibdody.velocity = new Vector3 (myRigibdody.velocity.x, jumpSpeed, 0);
 		}
 

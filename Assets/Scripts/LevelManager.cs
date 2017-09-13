@@ -33,6 +33,8 @@ public class LevelManager : MonoBehaviour {
 
 	private ResetOnRespawn[] objectsToReset;
 
+	public GameObject gameOverScreen;
+
 	// Use this for initialization
 	void Start () {
 		thePlayer = FindObjectOfType<PlayerController> ();
@@ -60,6 +62,7 @@ public class LevelManager : MonoBehaviour {
 		if (actualLifes > 0) {
 			StartCoroutine ("RespawnCo");
 		} else {
+			gameOverScreen.SetActive (true);
 			thePlayer.gameObject.SetActive (false);
 		}
 	}

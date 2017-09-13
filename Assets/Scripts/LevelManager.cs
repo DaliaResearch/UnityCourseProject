@@ -165,4 +165,14 @@ public class LevelManager : MonoBehaviour {
 		actualLifes += 1;
 		UpdateLifesText ();
 	}
+
+	public void AddExtraHealth (int healthToGive){
+		actualHealth += healthToGive;
+
+		if (actualHealth > maxHealth) {
+			actualHealth = maxHealth;
+		}
+
+		UpdateHearts ();
+	}
 }

@@ -39,6 +39,8 @@ public class LevelManager : MonoBehaviour {
 
 	public AudioSource hurtPlayerSound;
 	public AudioSource pickCoinSound;
+	public AudioSource gameMusic;
+	public AudioSource gameOverMusic;
 
 	// Use this for initialization
 	void Start () {
@@ -67,6 +69,9 @@ public class LevelManager : MonoBehaviour {
 		if (actualLifes > 0) {
 			StartCoroutine ("RespawnCo");
 		} else {
+			gameMusic.Stop ();
+			gameOverMusic.Play ();
+
 			gameOverScreen.SetActive (true);
 			thePlayer.gameObject.SetActive (false);
 		}

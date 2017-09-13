@@ -13,6 +13,7 @@ public class LevelManager : MonoBehaviour {
 	public int coinsCount;
 
 	public Text coinsText;
+	public Text livesText;
 
 	public Image heart1;
 	public Image heart2;
@@ -27,6 +28,9 @@ public class LevelManager : MonoBehaviour {
 
 	public bool respawing;
 
+	public int maxLives;
+	public int actualLives;
+
 	private ResetOnRespawn[] objectsToReset;
 
 	// Use this for initialization
@@ -39,6 +43,9 @@ public class LevelManager : MonoBehaviour {
 		respawing = false;
 
 		objectsToReset = FindObjectsOfType<ResetOnRespawn> ();
+
+		actualLives = maxLives;
+		UpdateLivesText ();
 	}
 	
 	// Update is called once per frame
@@ -47,7 +54,14 @@ public class LevelManager : MonoBehaviour {
 	}
 
 	public void Respawn (){
-		StartCoroutine ("RespawnCo");
+		actualLives -= 1;
+		UpdateLivesText ();
+
+		if (actualLives > 0) {
+			StartCoroutine ("RespawnCo");
+		} else {
+			thePlayer.gameObject.SetActive (false);
+		}
 	}
 
 	public IEnumerator RespawnCo () {
@@ -67,6 +81,7 @@ public class LevelManager : MonoBehaviour {
 		thePlayer.gameObject.SetActive (true);
 
 		respawing = false;
+		thePlayer.knockedout = false;
 
 		foreach (ResetOnRespawn objectToReset in objectsToReset) {
 			objectToReset.ResetObject ();
@@ -97,6 +112,11 @@ public class LevelManager : MonoBehaviour {
 	void UpdateCoinsText (){
 		coinsText.text = "Coins: " + coinsCount;
 	}
+
+	void UpdateLivesText (){
+		livesText.text = "Lives x " + actualLives;
+	}
+
 
 	void UpdateHearts (){
 		switch (actualHealth) {

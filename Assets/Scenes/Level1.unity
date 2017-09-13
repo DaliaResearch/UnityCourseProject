@@ -221,7 +221,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Lives x 99
+  m_Text: Lifes x 99
 --- !u!222 &65710432
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -670,7 +670,7 @@ GameObject:
   m_Component:
   - component: {fileID: 426855834}
   m_Layer: 5
-  m_Name: LivesContainer
+  m_Name: LifesContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1702,7 +1702,7 @@ MonoBehaviour:
     type: 2}
   coinsCount: 0
   coinsText: {fileID: 830690631}
-  livesText: {fileID: 65710431}
+  lifesText: {fileID: 65710431}
   heart1: {fileID: 1580625472}
   heart2: {fileID: 2038759309}
   heart3: {fileID: 469201975}
@@ -1712,8 +1712,8 @@ MonoBehaviour:
   maxHealth: 6
   actualHealth: 0
   respawing: 0
-  maxLives: 3
-  actualLives: 0
+  maxLifes: 3
+  actualLifes: 0
 --- !u!4 &1395478446
 Transform:
   m_ObjectHideFlags: 0

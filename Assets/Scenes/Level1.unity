@@ -1458,6 +1458,9 @@ MonoBehaviour:
   isGrounded: 0
   respawnPosition: {x: 0, y: 0, z: 0}
   stompBox: {fileID: 469486015}
+  knockedout: 0
+  knockoutForce: 10
+  knockoutTime: 1
 --- !u!95 &1155848039
 Animator:
   serializedVersion: 3
@@ -1584,6 +1587,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waitToRespawn: 2
   deathSplosion: {fileID: 1344637502691860, guid: 9473245dba2f949f3b578ddc0e2f68f3,
+    type: 2}
+  hurtSplosion: {fileID: 1697526622681962, guid: 08ea01bca0fc84ce2ae684c4f3613d5c,
     type: 2}
   coinsCount: 0
   coinsText: {fileID: 830690631}

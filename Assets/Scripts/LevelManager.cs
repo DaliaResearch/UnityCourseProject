@@ -8,6 +8,7 @@ public class LevelManager : MonoBehaviour {
 	public float waitToRespawn;
 	private PlayerController thePlayer;
 	public GameObject deathSplosion;
+	public GameObject hurtSplosion;
 
 	public int coinsCount;
 
@@ -78,12 +79,18 @@ public class LevelManager : MonoBehaviour {
 	}
 
 	public void AddHurt(int hurtToTake){
-		actualHealth -= hurtToTake;
-		UpdateHearts ();
+		if (!thePlayer.knockedout) {
+			thePlayer.Knockout ();
 
-		if (actualHealth <= 0 && !respawing) {
-			Respawn ();
-			respawing = true;
+			Instantiate (hurtSplosion, thePlayer.transform.position, hurtSplosion.transform.rotation);
+
+			actualHealth -= hurtToTake;
+			UpdateHearts ();
+
+			if (actualHealth <= 0 && !respawing) {
+				Respawn ();
+				respawing = true;
+			}
 		}
 	}
 

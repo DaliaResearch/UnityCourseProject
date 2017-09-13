@@ -21,6 +21,10 @@ public class PlayerController : MonoBehaviour {
 
 	public GameObject stompBox;
 
+	public bool knockedout;
+	public float knockoutForce;
+	public float knockoutTime;
+
 	// Use this for initialization
 	void Start () {
 		myRigibdody = GetComponent<Rigidbody2D> ();	
@@ -47,7 +51,7 @@ public class PlayerController : MonoBehaviour {
 			myRigibdody.velocity = new Vector3 (myRigibdody.velocity.x, jumpSpeed, 0);
 		}
 
-		myAnim.SetFloat ("Speed", Mathf.Abs(myRigibdody.velocity.x));
+		myAnim.SetFloat ("Speed", Mathf.Abs (myRigibdody.velocity.x));
 		myAnim.SetBool ("Grounded", isGrounded);
 
 		if (myRigibdody.velocity.y < 0) {
@@ -79,5 +83,22 @@ public class PlayerController : MonoBehaviour {
 		if (collision.gameObject.tag == "MovingPlatform") {
 			transform.parent = null;
 		}
+	}
+
+	public void Knockout (){
+		StartCoroutine ("KnockoutCo");
+	}
+
+	public IEnumerator KnockoutCo (){
+		Debug.Log ("KnockoutCo : INI");
+
+		knockedout = true;
+		myRigibdody.AddForce (Vector3.up * knockoutForce, ForceMode2D.Impulse);
+
+		yield return new WaitForSeconds (knockoutTime);
+
+		knockedout = false;
+
+		Debug.Log ("KnockoutCo : END");
 	}
 }

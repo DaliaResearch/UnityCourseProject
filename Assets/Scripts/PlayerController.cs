@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour {
 
 	private LevelManager theLevelManager;
 
+	public GameObject stompBox;
+
 	// Use this for initialization
 	void Start () {
 		myRigibdody = GetComponent<Rigidbody2D> ();	
@@ -47,6 +49,12 @@ public class PlayerController : MonoBehaviour {
 
 		myAnim.SetFloat ("Speed", Mathf.Abs(myRigibdody.velocity.x));
 		myAnim.SetBool ("Grounded", isGrounded);
+
+		if (myRigibdody.velocity.y < 0) {
+			stompBox.SetActive (true);
+		} else {
+			stompBox.SetActive (false);
+		}
 	}
 
 	void OnTriggerEnter2D (Collider2D other) {

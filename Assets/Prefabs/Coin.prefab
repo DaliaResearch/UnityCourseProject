@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212084991739887458}
   - component: {fileID: 58236842732393462}
   - component: {fileID: 114283351007221166}
+  - component: {fileID: 114603589234336638}
   m_Layer: 0
   m_Name: Coin
   m_TagString: Untagged
@@ -70,6 +71,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coinValue: 1
   splosion: {fileID: 1256292803761304, guid: 831b54b0f45ed4a48b727065cd9d7030, type: 2}
+--- !u!114 &114603589234336638
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1021415096419118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42473c46cc3104c68ac7af93c820b421, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212084991739887458
 SpriteRenderer:
   m_ObjectHideFlags: 1

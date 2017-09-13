@@ -21,8 +21,8 @@ public class CoinController : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other){
 		if (other.tag == "Player") {
+			gameObject.SetActive (false);
 			theLevelManager.AddCoins (coinValue);
-			Destroy (gameObject);
 			Instantiate (splosion, gameObject.transform.position, splosion.transform.rotation);
 		}
 	}

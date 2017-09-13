@@ -19,7 +19,7 @@ TagManager:
   - 
   - Ground
   - Player
-  - 
+  - Background
   - 
   - 
   - 
@@ -42,6 +42,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 4055974435
+    locked: 0
   - name: WorldObjects
     uniqueID: 171877369
     locked: 0

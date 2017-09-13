@@ -158,7 +158,8 @@ public class LevelManager : MonoBehaviour {
 		}
 	}
 
-	void AddExtraLife(){
+	public void AddExtraLife(){
 		actualLifes += 1;
+		UpdateLifesText ();
 	}
 }

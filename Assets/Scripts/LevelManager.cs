@@ -10,7 +10,9 @@ public class LevelManager : MonoBehaviour {
 	public GameObject deathSplosion;
 	public GameObject hurtSplosion;
 
-	public int coinsCount;
+	private int coinsCount;
+	private int coinsExtraLifeCounter;
+	public int coinsForExtraLife;
 
 	public Text coinsText;
 	public Text lifesText;
@@ -94,6 +96,12 @@ public class LevelManager : MonoBehaviour {
 	public void AddCoins(int coinsToAdd){
 		coinsCount += coinsToAdd;
 		UpdateCoinsText ();
+
+		coinsExtraLifeCounter += coinsToAdd;
+		if (coinsExtraLifeCounter >= coinsForExtraLife) {
+			AddExtraLife ();
+			coinsExtraLifeCounter -= coinsForExtraLife;
+		}
 	}
 
 	public void AddHurt(int hurtToTake){

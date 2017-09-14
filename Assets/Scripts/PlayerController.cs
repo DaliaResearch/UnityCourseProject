@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour {
 	private bool onPlatform;
 
 	public float jumpSpeed;
-	private Rigidbody2D myRigibdody;
+	public Rigidbody2D myRigidbody;
 
 	public Transform groundCheck;
 	public float groundCheckRadious;
@@ -31,12 +31,16 @@ public class PlayerController : MonoBehaviour {
 
 	public AudioSource jumpSound;
 
+	public bool canMove;
+
 	// Use this for initialization
 	void Start () {
-		myRigibdody = GetComponent<Rigidbody2D> ();	
+		myRigidbody = GetComponent<Rigidbody2D> ();	
 		myAnim = GetComponent<Animator> ();
 		respawnPosition = transform.position;
 		theLevelManager = FindObjectOfType<LevelManager> ();
+
+		canMove = true;
 	}
 	
 	// Update is called once per frame
@@ -49,28 +53,34 @@ public class PlayerController : MonoBehaviour {
 			actualMoveSpeed = moveSpeed;
 		}
 
+		if (canMove) {
+			PlayerMovement ();
+		}
+
+		myAnim.SetFloat ("Speed", Mathf.Abs (myRigidbody.velocity.x));
+		myAnim.SetBool ("Grounded", isGrounded);
+
+		if (myRigidbody.velocity.y < 0) {
+			stompBox.SetActive (true);
+		} else {
+			stompBox.SetActive (false);
+		}
+	}
+
+	void PlayerMovement() {
 		if (Input.GetAxis ("Horizontal") > 0f) {
-			myRigibdody.velocity = new Vector3 (actualMoveSpeed, myRigibdody.velocity.y, 0);
+			myRigidbody.velocity = new Vector3 (actualMoveSpeed, myRigidbody.velocity.y, 0);
 			transform.localScale = new Vector3 (1f, 1f, 1f);
 		} else if (Input.GetAxis ("Horizontal") < 0f) {
-			myRigibdody.velocity = new Vector3 (-actualMoveSpeed, myRigibdody.velocity.y, 0);
+			myRigidbody.velocity = new Vector3 (-actualMoveSpeed, myRigidbody.velocity.y, 0);
 			transform.localScale = new Vector3 (-1f, 1f, 1f);
 		} else {
-			myRigibdody.velocity = new Vector3 (0, myRigibdody.velocity.y, 0);
+			myRigidbody.velocity = new Vector3 (0, myRigidbody.velocity.y, 0);
 		}
 
 		if (Input.GetButtonDown ("Jump") && isGrounded) {
 			jumpSound.Play ();
-			myRigibdody.velocity = new Vector3 (myRigibdody.velocity.x, jumpSpeed, 0);
-		}
-
-		myAnim.SetFloat ("Speed", Mathf.Abs (myRigibdody.velocity.x));
-		myAnim.SetBool ("Grounded", isGrounded);
-
-		if (myRigibdody.velocity.y < 0) {
-			stompBox.SetActive (true);
-		} else {
-			stompBox.SetActive (false);
+			myRigidbody.velocity = new Vector3 (myRigidbody.velocity.x, jumpSpeed, 0);
 		}
 	}
 
@@ -108,7 +118,7 @@ public class PlayerController : MonoBehaviour {
 		Debug.Log ("KnockoutCo : INI");
 
 		knockedout = true;
-		myRigibdody.AddForce (Vector3.up * knockoutForce, ForceMode2D.Impulse);
+		myRigidbody.AddForce (Vector3.up * knockoutForce, ForceMode2D.Impulse);
 
 		yield return new WaitForSeconds (knockoutTime);
 
@@ -116,4 +126,5 @@ public class PlayerController : MonoBehaviour {
 
 		Debug.Log ("KnockoutCo : END");
 	}
+
 }

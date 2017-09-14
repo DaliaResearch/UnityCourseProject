@@ -9,13 +9,21 @@ public class CameraController : MonoBehaviour {
 	public float smoothing;
 	public float followAhead;
 	private Vector3 targetPosition;
+	public bool followTarget;
 
 	// Use this for initialization
 	void Start () {
+		followTarget = true;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		if (followTarget) {
+			FollowTarget ();
+		}
+	}
+
+	void FollowTarget() {
 		targetPosition = new Vector3 (target.transform.position.x, transform.position.y, transform.position.z);
 
 		if (target.transform.localScale.x > 0f) {

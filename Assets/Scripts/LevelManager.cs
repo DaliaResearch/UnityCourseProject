@@ -71,7 +71,6 @@ public class LevelManager : MonoBehaviour {
 		} else {
 			gameMusic.Stop ();
 			gameOverMusic.Play ();
-
 			gameOverScreen.SetActive (true);
 			thePlayer.gameObject.SetActive (false);
 		}

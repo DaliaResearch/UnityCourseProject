@@ -5,6 +5,10 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
 	public float moveSpeed;
+	private float actualMoveSpeed;
+	public float moveSpeedModifierOnPlatform;
+	private bool onPlatform;
+
 	public float jumpSpeed;
 	private Rigidbody2D myRigibdody;
 
@@ -39,11 +43,17 @@ public class PlayerController : MonoBehaviour {
 	void Update () {
 		isGrounded = Physics2D.OverlapCircle (groundCheck.position, groundCheckRadious, whatIsGround);
 
+		if (onPlatform) {
+			actualMoveSpeed = moveSpeed * moveSpeedModifierOnPlatform;
+		} else {
+			actualMoveSpeed = moveSpeed;
+		}
+
 		if (Input.GetAxis ("Horizontal") > 0f) {
-			myRigibdody.velocity = new Vector3 (moveSpeed, myRigibdody.velocity.y, 0);
+			myRigibdody.velocity = new Vector3 (actualMoveSpeed, myRigibdody.velocity.y, 0);
 			transform.localScale = new Vector3 (1f, 1f, 1f);
 		} else if (Input.GetAxis ("Horizontal") < 0f) {
-			myRigibdody.velocity = new Vector3 (-moveSpeed, myRigibdody.velocity.y, 0);
+			myRigibdody.velocity = new Vector3 (-actualMoveSpeed, myRigibdody.velocity.y, 0);
 			transform.localScale = new Vector3 (-1f, 1f, 1f);
 		} else {
 			myRigibdody.velocity = new Vector3 (0, myRigibdody.velocity.y, 0);
@@ -79,12 +89,14 @@ public class PlayerController : MonoBehaviour {
 	void OnCollisionEnter2D (Collision2D collision){
 		if (collision.gameObject.tag == "MovingPlatform") {
 			transform.parent = collision.transform;
+			onPlatform = true;
 		}
 	}
 
 	void OnCollisionExit2D (Collision2D collision){
 		if (collision.gameObject.tag == "MovingPlatform") {
 			transform.parent = null;
+			onPlatform = false;
 		}
 	}
 

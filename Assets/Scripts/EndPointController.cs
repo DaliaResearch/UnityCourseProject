@@ -21,6 +21,8 @@ public class EndPointController : MonoBehaviour {
 	void Start () {
 		thePlayer = FindObjectOfType<PlayerController> ();
 		theCamera = FindObjectOfType<CameraController> ();
+		theLevelManager = FindObjectOfType<LevelManager> ();
+
 		movingPlayer = false;
 		theSpriteRenderer = GetComponent<SpriteRenderer> ();
 	}
@@ -40,6 +42,9 @@ public class EndPointController : MonoBehaviour {
 
 	IEnumerator EndLevelCo () {
 		theSpriteRenderer.sprite = flagOpen;
+
+		theLevelManager.gameMusic.Stop ();
+		theLevelManager.gameOverMusic.Play ();
 
 		thePlayer.myRigidbody.velocity = Vector3.zero;
 		thePlayer.canMove = false;

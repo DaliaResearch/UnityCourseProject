@@ -1694,6 +1694,7 @@ MonoBehaviour:
     type: 2}
   hurtSplosion: {fileID: 1697526622681962, guid: 08ea01bca0fc84ce2ae684c4f3613d5c,
     type: 2}
+  coinsCount: 0
   coinsForExtraLife: 20
   coinsText: {fileID: 114788250707766678}
   lifesText: {fileID: 114010977946589360}

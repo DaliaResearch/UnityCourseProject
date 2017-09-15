@@ -173,6 +173,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelToLoad: Level1
+  topOpen: {fileID: 21300272, guid: 30975831c01a140078a0408d1172c322, type: 3}
+  bottomOpen: {fileID: 21300274, guid: 30975831c01a140078a0408d1172c322, type: 3}
+  topClosed: {fileID: 21300332, guid: 30975831c01a140078a0408d1172c322, type: 3}
+  bottomClosed: {fileID: 21300334, guid: 30975831c01a140078a0408d1172c322, type: 3}
+  top: {fileID: 212746906864330406}
+  bottom: {fileID: 212946038230769986}
 --- !u!114 &114515937029595150
 MonoBehaviour:
   m_ObjectHideFlags: 1

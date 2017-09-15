@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class EndPointController : MonoBehaviour {
 
-	public string leveToLoad;
+	public string levelToLoad;
+	public string levelToUnlock;
 	public float waitUntilWalk;
 	public float waitUntilLoadLevel;
 	private bool movingPlayer;
@@ -45,6 +46,7 @@ public class EndPointController : MonoBehaviour {
 		PlayerPrefs.SetInt("CoinsCount", theLevelManager.coinsCount);
 		PlayerPrefs.SetInt("ActualHealth", theLevelManager.actualHealth);
 		PlayerPrefs.SetInt("ActualLifes", theLevelManager.actualLifes);
+		PlayerPrefs.SetInt(levelToUnlock + "Unlocked", 1);
 
 		theSpriteRenderer.sprite = flagOpen;
 
@@ -62,6 +64,6 @@ public class EndPointController : MonoBehaviour {
 
 		yield return new WaitForSeconds(waitUntilLoadLevel);
 
-		SceneManager.LoadScene (leveToLoad);
+		SceneManager.LoadScene (levelToLoad);
 	}
 }

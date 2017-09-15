@@ -2076,37 +2076,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 61860633045177428, guid: f8d08b54dbe7f4e5bbc8be8c1d0a0e34,
-        type: 2}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114594405272520260, guid: f8d08b54dbe7f4e5bbc8be8c1d0a0e34,
-        type: 2}
-      propertyPath: waitUntilWalk
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114594405272520260, guid: f8d08b54dbe7f4e5bbc8be8c1d0a0e34,
-        type: 2}
-      propertyPath: waitUntilLoadLevel
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114594405272520260, guid: f8d08b54dbe7f4e5bbc8be8c1d0a0e34,
-        type: 2}
-      propertyPath: flagOpen
-      value: 
-      objectReference: {fileID: 21300656, guid: 30975831c01a140078a0408d1172c322,
-        type: 3}
-    - target: {fileID: 61860633045177428, guid: f8d08b54dbe7f4e5bbc8be8c1d0a0e34,
-        type: 2}
-      propertyPath: m_Offset.x
-      value: 1.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 114594405272520260, guid: f8d08b54dbe7f4e5bbc8be8c1d0a0e34,
-        type: 2}
-      propertyPath: leveToLoad
-      value: LevelSelector
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f8d08b54dbe7f4e5bbc8be8c1d0a0e34, type: 2}
   m_IsPrefabParent: 0

@@ -44,6 +44,9 @@ public class LevelManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		// Level1 is always unlocked
+		PlayerPrefs.SetInt ("Level1Unlocked", 1);
+
 		thePlayer = FindObjectOfType<PlayerController> ();
 
 		respawing = false;

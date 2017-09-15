@@ -41,6 +41,11 @@ public class EndPointController : MonoBehaviour {
 	}
 
 	IEnumerator EndLevelCo () {
+		// Save the values for the next Level
+		PlayerPrefs.SetInt("CoinsCount", theLevelManager.coinsCount);
+		PlayerPrefs.SetInt("ActualHealth", theLevelManager.actualHealth);
+		PlayerPrefs.SetInt("ActualLifes", theLevelManager.actualLifes);
+
 		theSpriteRenderer.sprite = flagOpen;
 
 		theLevelManager.gameMusic.Stop ();

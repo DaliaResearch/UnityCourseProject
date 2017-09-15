@@ -10,7 +10,7 @@ public class LevelManager : MonoBehaviour {
 	public GameObject deathSplosion;
 	public GameObject hurtSplosion;
 
-	private int coinsCount;
+	public int coinsCount;
 	private int coinsExtraLifeCounter;
 	public int coinsForExtraLife;
 
@@ -45,16 +45,34 @@ public class LevelManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		thePlayer = FindObjectOfType<PlayerController> ();
-		coinsCount = 0;
-		UpdateCoinsText ();
-		actualHealth = maxHealth;
-		UpdateHearts ();
+
 		respawing = false;
 
 		objectsToReset = FindObjectsOfType<ResetOnRespawn> ();
 
+		coinsCount = 0;
+		actualHealth = maxHealth;
 		actualLifes = maxLifes;
+
+		GetPlayerPrefs ();
+
+		UpdateHearts ();
 		UpdateLifesText ();
+		UpdateCoinsText ();
+	}
+
+	void GetPlayerPrefs () {
+		if (PlayerPrefs.HasKey ("CoinsCount")) {
+			coinsCount = PlayerPrefs.GetInt ("CoinsCount");
+		}
+
+		if (PlayerPrefs.HasKey ("ActualHealth")) {
+			actualHealth = PlayerPrefs.GetInt ("ActualHealth");
+		}
+
+		if (PlayerPrefs.HasKey ("ActualLifes")) {
+			actualLifes = PlayerPrefs.GetInt ("ActualLifes");
+		}
 	}
 	
 	// Update is called once per frame

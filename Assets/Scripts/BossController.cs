@@ -20,6 +20,7 @@ public class BossController : MonoBehaviour {
 
 	public GameObject platformsLeft;
 	public GameObject platformsRight;
+	public GameObject endLevelContainer;
 
 	public GameObject spinSaw;
 
@@ -41,6 +42,8 @@ public class BossController : MonoBehaviour {
 		HidePlatforms ();
 
 		bossActualHealth = bossMaxHealth;
+
+		endLevelContainer.SetActive (false);
 	}
 	
 	// Update is called once per frame
@@ -101,12 +104,24 @@ public class BossController : MonoBehaviour {
 
 	public void HurtBoss () {
 		bossActualHealth -= 1;
-		bossOnTheRight = !bossOnTheRight;
-		SpawnBoss ();
 
-		spinSawDropperTimeBetweenDrops = spinSawDropperTimeBetweenDrops / 2f;
+		if (bossActualHealth == 0) {
+			BossDead ();
+		} else {
+			bossOnTheRight = !bossOnTheRight;
+			SpawnBoss ();
 
-		platformsTimeWaitCounter = platformsTimeWait;
+			spinSawDropperTimeBetweenDrops = spinSawDropperTimeBetweenDrops / 2f;
+
+			platformsTimeWaitCounter = platformsTimeWait;
+			HidePlatforms ();
+		}
+	}
+
+	void BossDead () {
+		bossActive = false;
+		theBoss.SetActive (false);
 		HidePlatforms ();
+		endLevelContainer.SetActive (true);
 	}
 }

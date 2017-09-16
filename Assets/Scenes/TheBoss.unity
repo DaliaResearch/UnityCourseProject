@@ -187,7 +187,7 @@ GameObject:
   m_Component:
   - component: {fileID: 216457666}
   m_Layer: 0
-  m_Name: RoghtPlatforms
+  m_Name: RightPlatforms
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -469,6 +469,8 @@ Transform:
   - {fileID: 216457666}
   - {fileID: 298271580}
   - {fileID: 1652864802}
+  - {fileID: 1756615945}
+  - {fileID: 963199161}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -486,8 +488,15 @@ MonoBehaviour:
   spinSawDropperLeftPoint: {fileID: 190421400}
   spinSawDropperRightPoint: {fileID: 963843366}
   spinSawDropper: {fileID: 735656228}
+  bossLeftPoint: {fileID: 1756615945}
+  bossRightPoint: {fileID: 963199161}
   spinSawDropperTimeBetweenDrops: 2
+  platformsTimeWait: 4
+  platformsLeft: {fileID: 298271579}
+  platformsRight: {fileID: 216457665}
   spinSaw: {fileID: 1598140262312032, guid: 48c723099858446c7a58e6761a986b57, type: 2}
+  theBoss: {fileID: 2029325008}
+  bossMaxHealth: 4
 --- !u!61 &588417948
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -587,6 +596,34 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1652864802}
   m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &963199160
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 963199161}
+  m_Layer: 0
+  m_Name: BossRightPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &963199161
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 963199160}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 11.82, y: 8.62, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 588417946}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &963843365
 GameObject:
@@ -925,6 +962,34 @@ Transform:
   m_Father: {fileID: 588417946}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1756615944
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1756615945}
+  m_Layer: 0
+  m_Name: BossLeftPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1756615945
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1756615944}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -4.61, y: 8.62, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 588417946}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1756956698
 Prefab:
   m_ObjectHideFlags: 0
@@ -989,11 +1054,11 @@ GameObject:
   - component: {fileID: 2029325012}
   m_Layer: 0
   m_Name: TheBoss
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2029325009
 Transform:
   m_ObjectHideFlags: 0

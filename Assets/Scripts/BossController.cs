@@ -8,17 +8,39 @@ public class BossController : MonoBehaviour {
 	public Transform spinSawDropperRightPoint;
 	public GameObject spinSawDropper;
 
+	public Transform bossLeftPoint;
+	public Transform bossRightPoint;
+
+
 	public float spinSawDropperTimeBetweenDrops;
 	private float spinSawDropperTimeBetweenDropsCounter;
 
+	public float platformsTimeWait;
+	private float platformsTimeWaitCounter;
+
+	public GameObject platformsLeft;
+	public GameObject platformsRight;
+
 	public GameObject spinSaw;
 
+	public GameObject theBoss;
+
 	private bool bossActive;
+	private bool bossOnTheRight;
+
+	public int bossMaxHealth;
+	private int bossActualHealth;
 
 	// Use this for initialization
 	void Start () {
 		bossActive = false;
+		bossOnTheRight = true;
 		spinSawDropperTimeBetweenDropsCounter = spinSawDropperTimeBetweenDrops;
+
+		platformsTimeWaitCounter = platformsTimeWait;
+		HidePlatforms ();
+
+		bossActualHealth = bossMaxHealth;
 	}
 	
 	// Update is called once per frame
@@ -26,21 +48,65 @@ public class BossController : MonoBehaviour {
 		if (bossActive) {
 			spinSawDropperTimeBetweenDropsCounter -= Time.deltaTime;
 
-			if (spinSawDropperTimeBetweenDropsCounter <= 0) {
-				DropspinSaw ();
+			if (spinSawDropperTimeBetweenDropsCounter <= 0f) {
+				DropSpinSaw ();
 				spinSawDropperTimeBetweenDropsCounter = spinSawDropperTimeBetweenDrops;
+			}
+
+			if (platformsTimeWaitCounter > 0f) {
+				platformsTimeWaitCounter -= Time.deltaTime;
+
+				if (platformsTimeWaitCounter <= 0f) {
+					ShowPlatforms ();
+				}
 			}
 		}
 	}
 
-	void DropspinSaw () {
+	void DropSpinSaw () {
 		spinSawDropper.transform.position = new Vector3 (Random.Range (spinSawDropperLeftPoint.position.x, spinSawDropperRightPoint.position.x), spinSawDropper.transform.position.y, spinSawDropper.transform.position.z);
 		Instantiate (spinSaw, spinSawDropper.transform.position, spinSaw.transform.rotation);
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.tag == "Player") {
-			bossActive = true;
+			if (!bossActive) {
+				bossActive = true;
+				SpawnBoss ();
+				theBoss.SetActive (true);
+			}
 		}
+	}
+
+	void ShowPlatforms (){
+		if (bossOnTheRight) {
+			platformsLeft.SetActive (true);
+		} else {
+			platformsRight.SetActive (true);
+		}
+	}
+
+	void HidePlatforms () {
+		platformsLeft.SetActive (false);
+		platformsRight.SetActive (false);
+	}
+
+	void SpawnBoss (){
+		if (bossOnTheRight) {
+			theBoss.transform.position = bossRightPoint.position;
+		} else {
+			theBoss.transform.position = bossLeftPoint.position;
+		}
+	}
+
+	public void HurtBoss () {
+		bossActualHealth -= 1;
+		bossOnTheRight = !bossOnTheRight;
+		SpawnBoss ();
+
+		spinSawDropperTimeBetweenDrops = spinSawDropperTimeBetweenDrops / 2f;
+
+		platformsTimeWaitCounter = platformsTimeWait;
+		HidePlatforms ();
 	}
 }

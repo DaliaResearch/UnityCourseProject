@@ -24,5 +24,12 @@ public class StompBoxController : MonoBehaviour {
 			thePlayerRigidbody.velocity = new Vector3 (thePlayerRigidbody.velocity.x, bounceImpulse, 0f);
 			Instantiate (enemySplosion, other.transform.position, enemySplosion.transform.rotation);
 		}
+
+		if (other.tag == "Boss") {
+			thePlayerRigidbody.velocity = new Vector3 (thePlayerRigidbody.velocity.x, bounceImpulse, 0f);
+			Instantiate (enemySplosion, other.transform.position, enemySplosion.transform.rotation);
+
+			other.transform.parent.GetComponent<BossController> ().HurtBoss ();
+		}
 	}
 }

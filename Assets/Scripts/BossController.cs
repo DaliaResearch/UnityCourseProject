@@ -11,6 +11,7 @@ public class BossController : MonoBehaviour {
 	public Transform bossLeftPoint;
 	public Transform bossRightPoint;
 
+	public Transform cameraPosition;
 
 	public float spinSawDropperTimeBetweenDrops;
 	private float spinSawDropperTimeBetweenDropsCounter;
@@ -21,12 +22,14 @@ public class BossController : MonoBehaviour {
 	public GameObject platformsLeft;
 	public GameObject platformsRight;
 	public GameObject endLevelContainer;
+	public CameraController theCamera;
 
 	public GameObject spinSaw;
 
 	public GameObject theBoss;
 
 	private bool bossActive;
+	private bool bossDead;
 	private bool bossOnTheRight;
 
 	public int bossMaxHealth;
@@ -35,6 +38,7 @@ public class BossController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		bossActive = false;
+		bossDead = false;
 		bossOnTheRight = true;
 		spinSawDropperTimeBetweenDropsCounter = spinSawDropperTimeBetweenDrops;
 
@@ -44,11 +48,23 @@ public class BossController : MonoBehaviour {
 		bossActualHealth = bossMaxHealth;
 
 		endLevelContainer.SetActive (false);
+		theBoss.SetActive (false);
+
+		theCamera = FindObjectOfType<CameraController> ();
+
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (bossActive) {
+			theCamera.transform.position = 
+				Vector3.Lerp (
+					theCamera.transform.position, 
+					new Vector3(cameraPosition.position.x, cameraPosition.position.y, theCamera.transform.position.z), 
+					theCamera.smoothing * Time.deltaTime
+				);
+					
 			spinSawDropperTimeBetweenDropsCounter -= Time.deltaTime;
 
 			if (spinSawDropperTimeBetweenDropsCounter <= 0f) {
@@ -73,10 +89,8 @@ public class BossController : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.tag == "Player") {
-			if (!bossActive) {
-				bossActive = true;
-				SpawnBoss ();
-				theBoss.SetActive (true);
+			if (!bossActive && !bossDead) {
+				ActiveBoss ();
 			}
 		}
 	}
@@ -102,6 +116,13 @@ public class BossController : MonoBehaviour {
 		}
 	}
 
+	void ActiveBoss () {
+		bossActive = true;
+		SpawnBoss ();
+		theBoss.SetActive (true);
+		theCamera.followTarget = false;
+	}
+
 	public void HurtBoss () {
 		bossActualHealth -= 1;
 
@@ -119,9 +140,11 @@ public class BossController : MonoBehaviour {
 	}
 
 	void BossDead () {
+		bossDead = true;
 		bossActive = false;
 		theBoss.SetActive (false);
 		HidePlatforms ();
 		endLevelContainer.SetActive (true);
+		theCamera.followTarget = true;
 	}
 }

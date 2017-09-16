@@ -157,7 +157,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4917634857377554, guid: 20f299c99aa9c466a87745666449f9d4, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 23.16
+      value: -7.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 20f299c99aa9c466a87745666449f9d4, type: 2}
@@ -550,7 +550,7 @@ MonoBehaviour:
   theCamera: {fileID: 0}
   spinSaw: {fileID: 1598140262312032, guid: 48c723099858446c7a58e6761a986b57, type: 2}
   theBoss: {fileID: 2029325008}
-  bossMaxHealth: 2
+  bossMaxHealth: 4
 --- !u!61 &588417948
 BoxCollider2D:
   m_ObjectHideFlags: 0

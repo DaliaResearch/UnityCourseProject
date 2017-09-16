@@ -71,10 +71,6 @@ public class LevelManager : MonoBehaviour {
 			coinsCount = PlayerPrefs.GetInt ("CoinsCount");
 		}
 
-		if (PlayerPrefs.HasKey ("ActualHealth")) {
-			actualHealth = PlayerPrefs.GetInt ("ActualHealth");
-		}
-
 		if (PlayerPrefs.HasKey ("ActualLifes")) {
 			actualLifes = PlayerPrefs.GetInt ("ActualLifes");
 		}

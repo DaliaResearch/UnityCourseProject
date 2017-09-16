@@ -17,3 +17,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LevelSelector.unity
     guid: 4d9e03d0e9e6e463c8388b2640a2b596
+  - enabled: 1
+    path: Assets/Scenes/TheBoss.unity
+    guid: 02d3cb361ee53424796400ba3596ead8

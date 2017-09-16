@@ -300,6 +300,62 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2600143454e3f4553bab962cc8781c8a, type: 2}
   m_IsPrefabParent: 0
+--- !u!1001 &1418215963
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4630381207302352, guid: 2600143454e3f4553bab962cc8781c8a, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 2.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4630381207302352, guid: 2600143454e3f4553bab962cc8781c8a, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -1.7252
+      objectReference: {fileID: 0}
+    - target: {fileID: 4630381207302352, guid: 2600143454e3f4553bab962cc8781c8a, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4630381207302352, guid: 2600143454e3f4553bab962cc8781c8a, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4630381207302352, guid: 2600143454e3f4553bab962cc8781c8a, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4630381207302352, guid: 2600143454e3f4553bab962cc8781c8a, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4630381207302352, guid: 2600143454e3f4553bab962cc8781c8a, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4630381207302352, guid: 2600143454e3f4553bab962cc8781c8a, type: 2}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1353330544728826, guid: 2600143454e3f4553bab962cc8781c8a, type: 2}
+      propertyPath: m_Name
+      value: Door 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114859538314876242, guid: 2600143454e3f4553bab962cc8781c8a,
+        type: 2}
+      propertyPath: m_Text
+      value: The Boss
+      objectReference: {fileID: 0}
+    - target: {fileID: 114337005253292592, guid: 2600143454e3f4553bab962cc8781c8a,
+        type: 2}
+      propertyPath: levelToLoad
+      value: TheBoss
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 2600143454e3f4553bab962cc8781c8a, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &1596125535
 Prefab:
   m_ObjectHideFlags: 0

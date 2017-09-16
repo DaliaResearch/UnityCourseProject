@@ -86,8 +86,6 @@ public class PlayerController : MonoBehaviour {
 
 	void OnTriggerEnter2D (Collider2D other) {
 		if (other.tag == "KillPlane") {
-//			gameObject.SetActive (false);
-//			transform.position = respawnPosition;
 			theLevelManager.Respawn ();
 		}
 

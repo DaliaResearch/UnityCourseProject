@@ -42,6 +42,8 @@ public class LevelManager : MonoBehaviour {
 	public AudioSource gameMusic;
 	public AudioSource gameOverMusic;
 
+	public bool waitingForRespawn;
+
 	// Use this for initialization
 	void Start () {
 		// Level1 is always unlocked
@@ -98,6 +100,8 @@ public class LevelManager : MonoBehaviour {
 	}
 
 	public IEnumerator RespawnCo () {
+		waitingForRespawn = true;
+
 		thePlayer.gameObject.SetActive (false);
 
 		Instantiate (deathSplosion, thePlayer.transform.position, thePlayer.transform.rotation);
@@ -119,6 +123,8 @@ public class LevelManager : MonoBehaviour {
 		foreach (ResetOnRespawn objectToReset in objectsToReset) {
 			objectToReset.ResetObject ();
 		}
+
+		waitingForRespawn = false;
 	}
 
 	public void AddCoins(int coinsToAdd){

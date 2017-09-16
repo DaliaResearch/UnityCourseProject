@@ -14,6 +14,7 @@ public class BossController : MonoBehaviour {
 	public Transform cameraPosition;
 
 	public float spinSawDropperTimeBetweenDrops;
+	private float spinSawDropperTimeBetweenDropsInitial;
 	private float spinSawDropperTimeBetweenDropsCounter;
 
 	public float platformsTimeWait;
@@ -30,16 +31,28 @@ public class BossController : MonoBehaviour {
 
 	private bool bossActive;
 	private bool bossDead;
+	private bool bossWaitingForPlayerToRespawn;
 	private bool bossOnTheRight;
 
 	public int bossMaxHealth;
 	private int bossActualHealth;
 
+	private LevelManager theLevelManager;
+
 	// Use this for initialization
 	void Start () {
+		spinSawDropperTimeBetweenDropsInitial = spinSawDropperTimeBetweenDrops;
+		theCamera = FindObjectOfType<CameraController> ();
+		theLevelManager = FindObjectOfType<LevelManager> ();
+		InitiateValues ();
+	}
+
+	void InitiateValues (){
 		bossActive = false;
 		bossDead = false;
 		bossOnTheRight = true;
+		bossWaitingForPlayerToRespawn = false;
+		spinSawDropperTimeBetweenDrops = spinSawDropperTimeBetweenDropsInitial;
 		spinSawDropperTimeBetweenDropsCounter = spinSawDropperTimeBetweenDrops;
 
 		platformsTimeWaitCounter = platformsTimeWait;
@@ -50,14 +63,22 @@ public class BossController : MonoBehaviour {
 		endLevelContainer.SetActive (false);
 		theBoss.SetActive (false);
 
-		theCamera = FindObjectOfType<CameraController> ();
-
-
+		theCamera.followTarget = true;
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-		if (bossActive) {
+
+		if (theLevelManager.waitingForRespawn) {
+			bossWaitingForPlayerToRespawn = true;
+		}
+
+		if (!theLevelManager.waitingForRespawn && bossWaitingForPlayerToRespawn) {
+			InitiateValues ();
+			bossWaitingForPlayerToRespawn = false;
+		}
+		
+		if (bossActive && !bossWaitingForPlayerToRespawn) {
 			theCamera.transform.position = 
 				Vector3.Lerp (
 					theCamera.transform.position, 
